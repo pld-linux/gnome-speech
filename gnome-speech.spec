@@ -43,10 +43,10 @@ Provides:	gnome_speech-devel
 Obsoletes:	gnome_speech-devel
 
 %description devel
-Gnome speech files needed for development.
+GNOME Speech files needed for development.
 
 %description devel -l pl
-Pliki Gnome speech potrzebne do programowania.
+Pliki GNOME Speech potrzebne do programowania.
 
 %prep
 %setup -q
