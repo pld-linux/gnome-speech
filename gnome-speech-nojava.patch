@@ -1,12 +1,12 @@
-diff -urN gnome_speech-0.2.0.orig/configure.in gnome_speech-0.2.0/configure.in
---- gnome_speech-0.2.0.orig/configure.in	Thu May  1 15:50:18 2003
-+++ gnome_speech-0.2.0/configure.in	Thu May  1 15:50:28 2003
-@@ -171,7 +171,7 @@
+diff -urN gnome-speech-0.2.7.orig/configure.in gnome-speech-0.2.7/configure.in
+--- gnome-speech-0.2.7.orig/configure.in	Tue Aug 26 06:53:29 2003
++++ gnome-speech-0.2.7/configure.in	Tue Aug 26 07:11:30 2003
+@@ -214,7 +214,7 @@
+    JAVA_SUPPORT="true"
+ fi
+ AC_SUBST(JAVA_SUPPORT)
+-AM_CONDITIONAL(BUILD_JAVA_PACKAGE, test "x$JAVA_SUPPORT" = "xtrue")
++AM_CONDITIONAL(BUILD_JAVA_PACKAGE, no)
  
- # conditional to build java package
- 
--AM_CONDITIONAL(BUILD_JAVA_PACKAGE, test "x$IDLJ" != "xno")
-+AM_CONDITIONAL(BUILD_JAVA_PACKAGE, no )
  AC_SUBST(BUILD_JAVA_PACKAGE)
  
- # GNOME Speech Java Package location
