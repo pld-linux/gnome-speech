@@ -6,12 +6,12 @@
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl):	GNOME Speech - przekszta³canie tekstu na mowê
 Name:		gnome-speech
-Version:	0.3.1
+Version:	0.3.2
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	c3f047ea5171a3726cdd11a8c23912a7
+# Source0-md5:	d1c3ad83c3c6f42db0f8ad3cb61c4671
 Patch0:		%{name}-nojava.patch
 Patch1:		%{name}-am.patch
 URL:		http://developer.gnome.org/projects/gap/
@@ -19,6 +19,7 @@ BuildRequires:	ORBit2-devel >= 1:2.7.6
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gnome-common
+BuildRequires:	gtk-doc >= 0.6
 BuildRequires:	libbonobo-devel >= 2.4.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -39,7 +40,7 @@ przekszta³cania tekstu na mowê.
 Summary:	Development files for gnome_speech
 Summary(pl):	Pliki programistyczne dla gnome_speech
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	libbonobo-devel >= 2.4.0
 Provides:	gnome_speech-devel
 Obsoletes:	gnome_speech-devel
@@ -49,6 +50,18 @@ GNOME Speech files needed for development.
 
 %description devel -l pl
 Pliki GNOME Speech potrzebne do programowania.
+
+%package static
+Summary:	Static gnome-speech library
+Summary(pl):	Statyczna biblioteka gnome-speech
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static gnome-speech library.
+
+%description static -l pl
+Statyczna biblioteka gnome-speech.
 
 %prep
 %setup -q
@@ -61,7 +74,10 @@ Pliki GNOME Speech potrzebne do programowania.
 %{__autoheader}
 %{__automake}
 %{__autoconf}
-%configure
+%configure \
+	--enable-static \
+	--enable-gtk-doc \
+
 %{__make}
 
 %install
@@ -72,7 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 # no *.la for orbit modules
-rm -f $RPM_BUILD_ROOT%{_libdir}/orbit-2.0/*.la
+rm -f $RPM_BUILD_ROOT%{_libdir}/orbit-2.0/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -85,8 +101,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/festival-synthesis-driver
 %attr(755,root,root) %{_bindir}/test-speech
 %attr(755,root,root) %{_libdir}/libgnomespeech.so.*.*.*
+%attr(755,root,root) %{_libdir}/orbit-2.0/*.so*
 %{_libdir}/bonobo/servers/*.server
-%{_libdir}/orbit-2.0/*.so*
 
 %files devel
 %defattr(644,root,root,755)
@@ -95,3 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gnome-speech-1.0
 %{_datadir}/idl/gnome-speech-1.0
 %{_pkgconfigdir}/*.pc
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a
