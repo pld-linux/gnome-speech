@@ -17,8 +17,10 @@ Patch1:		%{name}-am.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel >= 1:2.7.6
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	gnome-common
 BuildRequires:	libbonobo-devel >= 2.3.6
+BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires:	festival >= 1.4.2
 Provides:	gnome_speech
