@@ -94,7 +94,7 @@ Klasy Java dla gnome-speech.
 %configure \
 	--enable-static \
 	--enable-gtk-doc \
-	%{?with_java:--with-jab-dir=/usr/share/java}
+	%{?with_java:--with-jab-dir=%{_datadir}/java}
 
 %{__make}
 
