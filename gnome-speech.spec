@@ -8,20 +8,21 @@ Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl):	GNOME Speech - przekszta³canie tekstu na mowê
 Name:		gnome-speech
 Version:	0.2.4
-Release:	0.%{_snap}.1
+Release:	1
 License:	GPL
 Group:		Libraries
-#Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.2/%{name}-%{version}.tar.bz2
-Source0:	%{name}-%{version}-%{_snap}.tar.bz2
-# Source0-md5:	1a03efe61044342390a8c63894ce46c6
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.2/%{name}-%{version}.tar.bz2
+# Source0-md5:	a83a9f30461a33f7cffdf669800e3f09
+#Source0:	%{name}-%{version}-%{_snap}.tar.bz2
 Patch0:		%{name}-configure.patch
 Patch1:		%{name}-nojava.patch
 Patch2:		%{name}-am.patch
+Patch3:		%{name}-idl.patch
 URL:		http://developer.gnome.org/projects/gap/
-BuildRequires:	ORBit2-devel >= 2.3.94
+BuildRequires:	ORBit2-devel >= 2.7.6
 BuildRequires:	autoconf
 BuildRequires:	bonobo-activation-devel >= 0.9.1
-BuildRequires:	libbonobo-devel >= 1.97.0
+BuildRequires:	libbonobo-devel >= 2.3.6
 Requires:	festival >= 1.4.2
 Provides:	gnome_speech
 Obsoletes:	gnome_speech
@@ -43,7 +44,6 @@ Requires:	%{name} = %{version}
 Provides:	gnome_speech-devel
 Obsoletes:	gnome_speech-devel
 
-
 %description devel
 Gnome speech files needed for development.
 
@@ -55,6 +55,7 @@ Pliki Gnome speech potrzebne do programowania.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
