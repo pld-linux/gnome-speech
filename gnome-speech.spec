@@ -1,25 +1,31 @@
 
 # TODO:
-#	java package?
 #	build other speech plugins?
+#
+%bcond_without	java		# don't build java subpackage
 
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl):	GNOME Speech - przekszta³canie tekstu na mowê
 Name:		gnome-speech
 Version:	0.3.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.3/%{name}-%{version}.tar.bz2
 # Source0-md5:	d1c3ad83c3c6f42db0f8ad3cb61c4671
-Patch0:		%{name}-nojava.patch
-Patch1:		%{name}-am.patch
+Patch0:		%{name}-am.patch
+Patch1:		%{name}-jar_dir.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel >= 1:2.7.6
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gnome-common
 BuildRequires:	gtk-doc >= 0.6
+%if %{with java}
+BuildRequires:	jar
+BuildRequires:	java
+BuildRequires:	java-access-bridge
+%endif
 BuildRequires:	libbonobo-devel >= 2.4.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -63,6 +69,17 @@ Static gnome-speech library.
 %description static -l pl
 Statyczna biblioteka gnome-speech.
 
+%package java
+Summary:	Java classes for gnome-speech
+Summary(pl):	Klasy Java dla gnome-speech
+Group:		Development/Libraries
+
+%description java
+Java classes for gnome-speech.
+
+%description java -l pl
+Klasy Java dla gnome-speech.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -77,6 +94,7 @@ Statyczna biblioteka gnome-speech.
 %configure \
 	--enable-static \
 	--enable-gtk-doc \
+	--with-jab-dir=/usr/share/java
 
 %{__make}
 
@@ -115,3 +133,9 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%if %{with java}
+%files java
+%defattr(644,root,root,755)
+%{_datadir}/java/*.jar
+%endif
