@@ -3,15 +3,17 @@
 #	java package?
 #	build other speech plugins?
 
+%define	_snap	20030801
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl):	GNOME Speech - przekszta³canie tekstu na mowê
 Name:		gnome-speech
-Version:	0.2.3
-Release:	1
+Version:	0.2.4
+Release:	0.%{_snap}.1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	d767cc3001bd5a08ed1760e44de7fa6d
+#Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.2/%{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}-%{_snap}.tar.bz2
+# Source0-md5:	1a03efe61044342390a8c63894ce46c6
 Patch0:		%{name}-configure.patch
 Patch1:		%{name}-nojava.patch
 Patch2:		%{name}-am.patch
@@ -21,8 +23,8 @@ BuildRequires:	autoconf
 BuildRequires:	bonobo-activation-devel >= 0.9.1
 BuildRequires:	libbonobo-devel >= 1.97.0
 Requires:	festival >= 1.4.2
-Obsoletes:	gnome_speech
 Provides:	gnome_speech
+Obsoletes:	gnome_speech
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,8 +40,8 @@ Summary:	Development files for gnome_speech
 Summary(pl):	Pliki programistyczne dla gnome_speech
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Obsoletes:	gnome_speech-devel
 Provides:	gnome_speech-devel
+Obsoletes:	gnome_speech-devel
 
 
 %description devel
@@ -57,6 +59,7 @@ Pliki Gnome speech potrzebne do programowania.
 %build
 %{__libtoolize}
 %{__aclocal} -I %{_aclocaldir}/gnome2-macros
+%{__autoheader}
 %{__automake}
 %{__autoconf}
 %configure
