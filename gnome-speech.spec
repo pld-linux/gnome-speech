@@ -16,17 +16,17 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-speech/0.3/%{name}-%{versi
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-jar_dir.patch
 URL:		http://developer.gnome.org/projects/gap/
-BuildRequires:	ORBit2-devel >= 1:2.7.6
+BuildRequires:	ORBit2-devel >= 1:2.12.1
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gtk-doc >= 0.6
+BuildRequires:	gtk-doc >= 1.3
 %if %{with java}
 BuildRequires:	jar
 BuildRequires:	java
 BuildRequires:	java-access-bridge
 %endif
-BuildRequires:	libbonobo-devel >= 2.4.0
+BuildRequires:	libbonobo-devel >= 2.8.1
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires:	festival >= 1.4.2
@@ -47,7 +47,7 @@ Summary:	Development files for gnome_speech
 Summary(pl):	Pliki programistyczne dla gnome_speech
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libbonobo-devel >= 2.4.0
+Requires:	libbonobo-devel >= 2.8.1
 Provides:	gnome_speech-devel
 Obsoletes:	gnome_speech-devel
 
