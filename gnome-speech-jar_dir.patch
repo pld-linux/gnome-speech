@@ -1,0 +1,24 @@
+diff -urN aa/gnome-speech-0.3.2/drivers/freetts/java/Makefile.am gnome-speech-0.3.2/drivers/freetts/java/Makefile.am
+--- aa/gnome-speech-0.3.2/drivers/freetts/java/Makefile.am	2003-08-25 08:54:00.000000000 +0200
++++ gnome-speech-0.3.2/drivers/freetts/java/Makefile.am	2004-03-11 16:03:50.593335144 +0100
+@@ -15,7 +15,7 @@
+ 	$(FREETTS_DRIVER_CLASSES)
+ 
+ freetts_driver_jardir = \
+-	$(prefix)/share/jar
++	$(prefix)/share/java
+ 
+ freetts_driver_jar_DATA = \
+ 	freetts-synthesis-driver.jar
+diff -urN aa/gnome-speech-0.3.2/java/Makefile.am gnome-speech-0.3.2/java/Makefile.am
+--- aa/gnome-speech-0.3.2/java/Makefile.am	2003-08-25 08:54:01.000000000 +0200
++++ gnome-speech-0.3.2/java/Makefile.am	2004-03-11 16:03:59.326007576 +0100
+@@ -28,7 +28,7 @@
+ 	rm gnome-speech.jar
+ 
+ gnome_speech_jardir = \
+-	$(prefix)/share/jar
++	$(prefix)/share/java
+ 
+ gnome_speech_jar_DATA = \
+ 	gnome-speech.jar
