@@ -2,7 +2,7 @@
 # TODO:
 #	build other speech plugins?
 #
-%bcond_without	java		# don't build java subpackage
+%bcond_with	java		# build java subpackage
 
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl):	GNOME Speech - przekszta³canie tekstu na mowê
@@ -94,7 +94,7 @@ Klasy Java dla gnome-speech.
 %configure \
 	--enable-static \
 	--enable-gtk-doc \
-	--with-jab-dir=/usr/share/java
+	%{?with_java:--with-jab-dir=/usr/share/java}
 
 %{__make}
 
