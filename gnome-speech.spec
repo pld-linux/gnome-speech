@@ -11,6 +11,7 @@ Release:	0.1
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.2/%{name}-%{version}.tar.bz2
+# Source0-md5:	7346431b9ccf196eea0d332a10fbb8ea
 Patch0:		%{name}-configure.patch
 Patch1:		%{name}-nojava.patch
 Patch2:		%{name}-am.patch
