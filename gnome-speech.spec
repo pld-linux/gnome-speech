@@ -7,12 +7,12 @@
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl):	GNOME Speech - przekszta³canie tekstu na mowê
 Name:		gnome-speech
-Version:	0.3.3
+Version:	0.3.5
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	8ee8cb9196da9971ff7d497e88f4eadd
+# Source0-md5:	34382d0b33146b1f8fc5239895471369
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-jar_dir.patch
 URL:		http://developer.gnome.org/projects/gap/
