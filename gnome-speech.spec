@@ -19,7 +19,7 @@ URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel >= 1:2.7.6
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gnome-common
+BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gtk-doc >= 0.6
 %if %{with java}
 BuildRequires:	jar
@@ -87,7 +87,7 @@ Klasy Java dla gnome-speech.
 
 %build
 %{__libtoolize}
-%{__aclocal} -I %{_aclocaldir}/gnome2-macros
+%{__aclocal}
 %{__autoheader}
 %{__automake}
 %{__autoconf}
