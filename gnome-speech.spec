@@ -6,12 +6,12 @@
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl):	GNOME Speech - przekszta³canie tekstu na mowê
 Name:		gnome-speech
-Version:	0.2.7
+Version:	0.2.8
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	63669571096af17e495abbde890d19c6
+# Source0-md5:	efa14757643f3e6ec7cdf1aef33914a6
 Patch0:		%{name}-nojava.patch
 Patch1:		%{name}-am.patch
 URL:		http://developer.gnome.org/projects/gap/
@@ -19,7 +19,7 @@ BuildRequires:	ORBit2-devel >= 1:2.7.6
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gnome-common
-BuildRequires:	libbonobo-devel >= 2.3.6
+BuildRequires:	libbonobo-devel >= 2.4.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires:	festival >= 1.4.2
@@ -40,7 +40,7 @@ Summary:	Development files for gnome_speech
 Summary(pl):	Pliki programistyczne dla gnome_speech
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	libbonobo-devel >= 2.3.6
+Requires:	libbonobo-devel >= 2.4.0
 Provides:	gnome_speech-devel
 Obsoletes:	gnome_speech-devel
 
@@ -62,7 +62,6 @@ Pliki GNOME Speech potrzebne do programowania.
 %{__automake}
 %{__autoconf}
 %configure
-
 %{__make}
 
 %install
