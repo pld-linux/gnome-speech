@@ -1,0 +1,28 @@
+diff -urN gnome-speech-0.2.2.orig/drivers/freetts/java/Makefile.am gnome-speech-0.2.2/drivers/freetts/java/Makefile.am
+--- gnome-speech-0.2.2.orig/drivers/freetts/java/Makefile.am	Tue May 20 14:05:36 2003
++++ gnome-speech-0.2.2/drivers/freetts/java/Makefile.am	Tue May 20 14:06:16 2003
+@@ -1,7 +1,7 @@
+ if BUILD_FREETTS_DRIVER
+ FREETTS_DRIVER_CLASSES= \
+ 	org/GNOME/Speech/*.class
+-CLEANFILES += $(FREETTS_DRIVER_CLASSES)
++CLEANFILES = $(FREETTS_DRIVER_CLASSES)
+ CLEANFILES+=freetts-synthesis-driver.jar
+ 
+ $(FREETTS_DRIVER_CLASSES): org/GNOME/Speech/*.java
+diff -urN gnome-speech-0.2.2.orig/drivers/freetts/native/Makefile.am gnome-speech-0.2.2/drivers/freetts/native/Makefile.am
+--- gnome-speech-0.2.2.orig/drivers/freetts/native/Makefile.am	Tue May 20 14:05:36 2003
++++ gnome-speech-0.2.2/drivers/freetts/native/Makefile.am	Tue May 20 14:07:49 2003
+@@ -14,11 +14,7 @@
+ 	$(gnome_speech_CFLAGS)
+ endif
+ 
+-LDFLAGS = \
+-	$(gnome_speech_LIBS) \
+-	@LT_VERSION_INFO@
+-
+-CLEANFILES+=freettsdriver.h
++CLEANFILES=freettsdriver.h
+ 
+ freettsdriver.h:
+ 	javah \
