@@ -3,7 +3,6 @@
 #	java package?
 #	build other speech plugins?
 
-%define	_snap	20030801
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl):	GNOME Speech - przekszta³canie tekstu na mowê
 Name:		gnome-speech
@@ -13,13 +12,12 @@ License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/0.2/%{name}-%{version}.tar.bz2
 # Source0-md5:	63669571096af17e495abbde890d19c6
-#Source0:	%{name}-%{version}-%{_snap}.tar.bz2
 Patch0:		%{name}-nojava.patch
 Patch1:		%{name}-am.patch
 URL:		http://developer.gnome.org/projects/gap/
-BuildRequires:	ORBit2-devel >= 2.7.6
+BuildRequires:	ORBit2-devel >= 1:2.7.6
 BuildRequires:	autoconf
-BuildRequires:	bonobo-activation-devel >= 0.9.1
+BuildRequires:	gnome-common
 BuildRequires:	libbonobo-devel >= 2.3.6
 Requires:	festival >= 1.4.2
 Provides:	gnome_speech
@@ -39,6 +37,7 @@ Summary:	Development files for gnome_speech
 Summary(pl):	Pliki programistyczne dla gnome_speech
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	libbonobo-devel >= 2.3.6
 Provides:	gnome_speech-devel
 Obsoletes:	gnome_speech-devel
 
@@ -65,6 +64,7 @@ Pliki GNOME Speech potrzebne do programowania.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	orbittypelibdir=%{_libdir}/orbit-2.0 \
 	DESTDIR=$RPM_BUILD_ROOT
