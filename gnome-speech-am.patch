@@ -1,34 +1,14 @@
-diff -urN aaa/gnome-speech-0.2.8/drivers/freetts/java/Makefile.am gnome-speech-0.2.8/drivers/freetts/java/Makefile.am
---- aaa/gnome-speech-0.2.8/drivers/freetts/java/Makefile.am	2003-11-25 03:09:01.000000000 +0100
-+++ gnome-speech-0.2.8/drivers/freetts/java/Makefile.am	2003-11-25 20:52:00.000000000 +0100
-@@ -1,7 +1,7 @@
- if BUILD_FREETTS_DRIVER
- FREETTS_DRIVER_CLASSES= \
- 	org/GNOME/Speech/*.class
--CLEANFILES += $(FREETTS_DRIVER_CLASSES)
-+CLEANFILES = $(FREETTS_DRIVER_CLASSES)
- CLEANFILES+=freetts-synthesis-driver.jar
+diff -urN aa/gnome-speech-0.3.3/drivers/freetts/java/org/GNOME/Speech/Makefile.am gnome-speech-0.3.3/drivers/freetts/java/org/GNOME/Speech/Makefile.am
+--- aa/gnome-speech-0.3.3/drivers/freetts/java/org/GNOME/Speech/Makefile.am	2004-06-10 18:12:39.000000000 +0200
++++ gnome-speech-0.3.3/drivers/freetts/java/org/GNOME/Speech/Makefile.am	2004-06-10 19:42:36.632672016 +0200
+@@ -1,9 +1,7 @@
+ JAVA_SRC=$(wildcard *.java)
+ CLASSES=$(patsubst %.java,%.class,$(JAVA_SRC))
  
- $(FREETTS_DRIVER_CLASSES): org/GNOME/Speech/*.java
-diff -urN aaa/gnome-speech-0.2.8/drivers/freetts/native/Makefile.am gnome-speech-0.2.8/drivers/freetts/native/Makefile.am
---- aaa/gnome-speech-0.2.8/drivers/freetts/native/Makefile.am	2003-11-25 03:14:14.000000000 +0100
-+++ gnome-speech-0.2.8/drivers/freetts/native/Makefile.am	2003-11-25 20:52:48.000000000 +0100
-@@ -15,17 +15,13 @@
- 	$(gnome_speech_CFLAGS)
- endif
+-SOURCES= \
+-	FreeTTSSynthesisDriver.java \
+-	FreeTTSSpeaker.java
++SOURCES= FreeTTSSynthesisDriver.java FreeTTSSpeaker.java
  
--LDFLAGS = \
--	$(gnome_speech_LIBS) \
--	@LT_VERSION_INFO@
--
- freettsdriver.h:
- 	$(JAVAH) \
- 	-classpath ../java:$(GNOME_SPEECH_CLASSPATH):$(FREETTS_CLASSPATH) \
- 	-o freettsdriver.h \
- 	org.GNOME.Speech.FreeTTSSynthesisDriver
- 
--CLEANFILES += freettsdriver.h
-+CLEANFILES = freettsdriver.h
- 
- libfreettsdriver_la_SOURCES = \
- 	freettsdriver.c
+ EXTRA_DIST = \
+ 	FreeTTSSynthesisDriver.java \
