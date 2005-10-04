@@ -1,18 +1,18 @@
-
 # TODO:
-#	build other speech plugins?
+# - build other speech plugins?
 #
+# Conditional build:
 %bcond_with	java		# build java subpackage
-
+#
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl):	GNOME Speech - przekszta³canie tekstu na mowê
 Name:		gnome-speech
-Version:	0.3.7
+Version:	0.3.8
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-speech/0.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	0afa367c75288357fa3b8e274e72584d
+# Source0-md5:	b5e85e71d24babe169cb1a37e4fbcae2
 Patch0:		%{name}-jar_dir.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel >= 1:2.12.1
