@@ -7,15 +7,15 @@
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl):	GNOME Speech - przekszta³canie tekstu na mowê
 Name:		gnome-speech
-Version:	0.4.5
+Version:	0.4.7
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-speech/0.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	e8b11c2e7126787f66289a3b6e83555b
+# Source0-md5:	6aa7393fc82ccd0ce0298bb3ca5c2491
 Patch0:		%{name}-jar_dir.patch
 URL:		http://developer.gnome.org/projects/gap/
-BuildRequires:	ORBit2-devel >= 1:2.14.2
+BuildRequires:	ORBit2-devel >= 1:2.14.4
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gnome-common >= 2.12.0
@@ -25,7 +25,7 @@ BuildRequires:	jar
 BuildRequires:	java
 BuildRequires:	java-access-bridge >= 1.6.0
 %endif
-BuildRequires:	libbonobo-devel >= 2.15.2
+BuildRequires:	libbonobo-devel >= 2.16.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires:	festival >= 1.4.2
@@ -46,7 +46,7 @@ Summary:	Development files for gnome_speech
 Summary(pl):	Pliki programistyczne dla gnome_speech
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libbonobo-devel >= 2.15.2
+Requires:	libbonobo-devel >= 2.16.0
 Provides:	gnome_speech-devel
 Obsoletes:	gnome_speech-devel
 
@@ -92,7 +92,7 @@ Klasy Java dla gnome-speech.
 %configure \
 	--enable-static \
 	--enable-gtk-doc \
-	%{?with_java:--with-jab-dir=%{_datadir}/java}
+	%{?with_java:--with-jab-dir=%{_javadir}}
 %{__make}
 
 %install
@@ -134,5 +134,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with java}
 %files java
 %defattr(644,root,root,755)
-%{_datadir}/java/*.jar
+%{_javadir}/*.jar
 %endif
