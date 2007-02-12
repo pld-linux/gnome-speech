@@ -5,7 +5,7 @@
 %bcond_without	java		# don't build java subpackage
 #
 Summary:	GNOME Speech - text-to-speech convertion
-Summary(pl):	GNOME Speech - przekszta³canie tekstu na mowê
+Summary(pl.UTF-8):   GNOME Speech - przeksztaÅ‚canie tekstu na mowÄ™
 Name:		gnome-speech
 Version:	0.4.7
 Release:	1
@@ -37,13 +37,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 GNOME Speech purpose is to provide a simple general API for producing
 text-to-speech output.
 
-%description -l pl
-Celem GNOME Speech jest udostêpnienie prostego, ogólnego API do
-przekszta³cania tekstu na mowê.
+%description -l pl.UTF-8
+Celem GNOME Speech jest udostÄ™pnienie prostego, ogÃ³lnego API do
+przeksztaÅ‚cania tekstu na mowÄ™.
 
 %package devel
 Summary:	Development files for gnome_speech
-Summary(pl):	Pliki programistyczne dla gnome_speech
+Summary(pl.UTF-8):   Pliki programistyczne dla gnome_speech
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libbonobo-devel >= 2.16.0
@@ -53,30 +53,30 @@ Obsoletes:	gnome_speech-devel
 %description devel
 GNOME Speech files needed for development.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pliki GNOME Speech potrzebne do programowania.
 
 %package static
 Summary:	Static gnome-speech library
-Summary(pl):	Statyczna biblioteka gnome-speech
+Summary(pl.UTF-8):   Statyczna biblioteka gnome-speech
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static gnome-speech library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka gnome-speech.
 
 %package java
 Summary:	Java classes for gnome-speech
-Summary(pl):	Klasy Java dla gnome-speech
+Summary(pl.UTF-8):   Klasy Java dla gnome-speech
 Group:		Development/Libraries
 
 %description java
 Java classes for gnome-speech.
 
-%description java -l pl
+%description java -l pl.UTF-8
 Klasy Java dla gnome-speech.
 
 %prep
