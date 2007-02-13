@@ -5,7 +5,7 @@
 %bcond_without	java		# don't build java subpackage
 #
 Summary:	GNOME Speech - text-to-speech convertion
-Summary(pl.UTF-8):   GNOME Speech - przekształcanie tekstu na mowę
+Summary(pl.UTF-8):	GNOME Speech - przekształcanie tekstu na mowę
 Name:		gnome-speech
 Version:	0.4.7
 Release:	1
@@ -43,7 +43,7 @@ przekształcania tekstu na mowę.
 
 %package devel
 Summary:	Development files for gnome_speech
-Summary(pl.UTF-8):   Pliki programistyczne dla gnome_speech
+Summary(pl.UTF-8):	Pliki programistyczne dla gnome_speech
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libbonobo-devel >= 2.16.0
@@ -58,7 +58,7 @@ Pliki GNOME Speech potrzebne do programowania.
 
 %package static
 Summary:	Static gnome-speech library
-Summary(pl.UTF-8):   Statyczna biblioteka gnome-speech
+Summary(pl.UTF-8):	Statyczna biblioteka gnome-speech
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -70,7 +70,7 @@ Statyczna biblioteka gnome-speech.
 
 %package java
 Summary:	Java classes for gnome-speech
-Summary(pl.UTF-8):   Klasy Java dla gnome-speech
+Summary(pl.UTF-8):	Klasy Java dla gnome-speech
 Group:		Development/Libraries
 
 %description java
