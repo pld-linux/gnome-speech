@@ -4,28 +4,32 @@
 # Conditional build:
 %bcond_without	java		# don't build java subpackage
 #
+%ifnarch i586 i686 pentium3 pentium4 athlon %{x8664}
+%undefine	with_java
+%endif
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl.UTF-8):	GNOME Speech - przekształcanie tekstu na mowę
 Name:		gnome-speech
-Version:	0.4.7
+Version:	0.4.10
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-speech/0.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	6aa7393fc82ccd0ce0298bb3ca5c2491
+# Source0-md5:	2ec7b7e2b01dd28299bd20fd40668bc5
 Patch0:		%{name}-jar_dir.patch
 URL:		http://developer.gnome.org/projects/gap/
-BuildRequires:	ORBit2-devel >= 1:2.14.4
+BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	espeak-devel
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gtk-doc >= 1.7
 %if %{with java}
 BuildRequires:	jar
 BuildRequires:	java
-BuildRequires:	java-access-bridge >= 1.6.0
+BuildRequires:	java-access-bridge >= 1.18.0
 %endif
-BuildRequires:	libbonobo-devel >= 2.16.0
+BuildRequires:	libbonobo-devel >= 2.17.92
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires:	festival >= 1.4.2
@@ -46,7 +50,7 @@ Summary:	Development files for gnome_speech
 Summary(pl.UTF-8):	Pliki programistyczne dla gnome_speech
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libbonobo-devel >= 2.16.0
+Requires:	libbonobo-devel >= 2.17.92
 Provides:	gnome_speech-devel
 Obsoletes:	gnome_speech-devel
 
@@ -92,6 +96,7 @@ Klasy Java dla gnome-speech.
 %configure \
 	--enable-static \
 	--enable-gtk-doc \
+	--with-speech-dispatcher \
 	%{?with_java:--with-jab-dir=%{_javadir}}
 %{__make}
 
@@ -113,11 +118,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/espeak-synthesis-driver
 %attr(755,root,root) %{_bindir}/festival-synthesis-driver
+%attr(755,root,root) %{_bindir}/speechd-synthesis-driver
 %attr(755,root,root) %{_bindir}/test-speech
 %attr(755,root,root) %{_libdir}/libgnomespeech.so.*.*.*
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so*
-%{_libdir}/bonobo/servers/*.server
+%{_libdir}/bonobo/servers/GNOME_Speech_SynthesisDriver_Espeak.server
+%{_libdir}/bonobo/servers/GNOME_Speech_SynthesisDriver_Festival.server
+%{_libdir}/bonobo/servers/GNOME_Speech_SynthDriver_Speech_Dispatcher.server
 
 %files devel
 %defattr(644,root,root,755)
