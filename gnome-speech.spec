@@ -25,9 +25,8 @@ BuildRequires:	espeak-devel
 BuildRequires:	gnome-common >= 2.18.0
 BuildRequires:	gtk-doc >= 1.8
 %if %{with java}
-BuildRequires:	jar
-BuildRequires:	java
 BuildRequires:	java-access-bridge >= 1.18.0
+BuildRequires:	jdk
 %endif
 BuildRequires:	libbonobo-devel >= 2.18.0
 BuildRequires:	libtool
