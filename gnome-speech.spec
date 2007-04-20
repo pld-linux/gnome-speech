@@ -2,6 +2,7 @@
 # - build other speech plugins?
 #
 # Conditional build:
+%bcond_without	festival	# don't build Festival plugin
 %bcond_without	java		# don't build java subpackage
 #
 %ifnarch i586 i686 pentium3 pentium4 athlon %{x8664}
@@ -31,7 +32,7 @@ BuildRequires:	jdk
 BuildRequires:	libbonobo-devel >= 2.18.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-Requires:	festival >= 1.4.2
+%{?with_festival:Requires:	festival >= 1.4.2}
 Provides:	gnome_speech
 Obsoletes:	gnome_speech
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -95,6 +96,7 @@ Klasy Java dla gnome-speech.
 %configure \
 	--enable-static \
 	--enable-gtk-doc \
+	--with%{!?with_festival:out}-festival \
 	--with-speech-dispatcher \
 	%{?with_java:--with-jab-dir=%{_javadir}}
 %{__make}
@@ -118,13 +120,13 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/espeak-synthesis-driver
-%attr(755,root,root) %{_bindir}/festival-synthesis-driver
+%{?with_festival:%attr(755,root,root) %{_bindir}/festival-synthesis-driver}
 %attr(755,root,root) %{_bindir}/speechd-synthesis-driver
 %attr(755,root,root) %{_bindir}/test-speech
 %attr(755,root,root) %{_libdir}/libgnomespeech.so.*.*.*
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so*
 %{_libdir}/bonobo/servers/GNOME_Speech_SynthesisDriver_Espeak.server
-%{_libdir}/bonobo/servers/GNOME_Speech_SynthesisDriver_Festival.server
+%{?with_festival:%{_libdir}/bonobo/servers/GNOME_Speech_SynthesisDriver_Festival.server}
 %{_libdir}/bonobo/servers/GNOME_Speech_SynthDriver_Speech_Dispatcher.server
 
 %files devel
