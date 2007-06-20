@@ -32,7 +32,7 @@ BuildRequires:	jdk
 BuildRequires:	libbonobo-devel >= 2.18.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-%{?with_festival:Requires:	festival >= 1.4.2}
+Requires:	gnome-speech-driver
 Provides:	gnome_speech
 Obsoletes:	gnome_speech
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -44,6 +44,34 @@ text-to-speech output.
 %description -l pl.UTF-8
 Celem GNOME Speech jest udostępnienie prostego, ogólnego API do
 przekształcania tekstu na mowę.
+
+%package driver-espeak
+Summary:	Espeak TTS Speech Driver
+Group:		Libraries
+Requires:	espeak
+Provides:	gnome-speech-driver
+
+%description driver-espeak
+Provides text to speech services using the Espeak Speech Synthesis
+System.
+
+%package driver-festival
+Summary:	Festival TTS Speech Driver
+Group:		Libraries
+Requires:	festival
+Provides:	gnome-speech-driver
+
+%description driver-festival
+Provides the text to speech services using the Festival Speech
+Synthesis System.
+
+%package driver-speech-dispatcher
+Summary:	Speech Dispatcher driver
+Group:		Libraries
+Provides:	gnome-speech-driver
+
+%description driver-speech-dispatcher
+Provides the text to speech services using Speech Dispatcher.
 
 %package devel
 Summary:	Development files for gnome_speech
@@ -119,14 +147,25 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/espeak-synthesis-driver
-%{?with_festival:%attr(755,root,root) %{_bindir}/festival-synthesis-driver}
-%attr(755,root,root) %{_bindir}/speechd-synthesis-driver
 %attr(755,root,root) %{_bindir}/test-speech
 %attr(755,root,root) %{_libdir}/libgnomespeech.so.*.*.*
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so*
+
+%files driver-espeak
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/espeak-synthesis-driver
 %{_libdir}/bonobo/servers/GNOME_Speech_SynthesisDriver_Espeak.server
-%{?with_festival:%{_libdir}/bonobo/servers/GNOME_Speech_SynthesisDriver_Festival.server}
+
+%if %{with festival}
+%files driver-festival
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/festival-synthesis-driver
+%{_libdir}/bonobo/servers/GNOME_Speech_SynthesisDriver_Festival.server
+%endif
+
+%files driver-speech-dispatcher
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/speechd-synthesis-driver
 %{_libdir}/bonobo/servers/GNOME_Speech_SynthDriver_Speech_Dispatcher.server
 
 %files devel
