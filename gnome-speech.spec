@@ -47,6 +47,7 @@ przekształcania tekstu na mowę.
 
 %package driver-espeak
 Summary:	Espeak TTS Speech Driver
+Summary(pl.UTF-8):	Sterownik mowy ESpeak TTS
 Group:		Libraries
 Requires:	espeak
 Provides:	gnome-speech-driver
@@ -55,8 +56,13 @@ Provides:	gnome-speech-driver
 Provides text to speech services using the Espeak Speech Synthesis
 System.
 
+%description driver-espeak -l pl.UTF-8
+Ten pakiet udostępnia usługę przekształcania tekstu na mowę przy
+użyciu systemu syntezy mowy Espeak.
+
 %package driver-festival
 Summary:	Festival TTS Speech Driver
+Summary(pl.UTF-8):	Sterownik mowy Festival TTS
 Group:		Libraries
 Requires:	festival
 Provides:	gnome-speech-driver
@@ -65,13 +71,22 @@ Provides:	gnome-speech-driver
 Provides the text to speech services using the Festival Speech
 Synthesis System.
 
+%description driver-festival -l pl.UTF-8
+Ten pakiet udostępnia usługę przekształcania tekstu na mowę przy
+użyciu systemu syntezy mowy Festival.
+
 %package driver-speech-dispatcher
 Summary:	Speech Dispatcher driver
+Summary(pl.UTF-8):	Sterownik mowy Speech Dispatcher
 Group:		Libraries
 Provides:	gnome-speech-driver
 
 %description driver-speech-dispatcher
 Provides the text to speech services using Speech Dispatcher.
+
+%description driver-speech-dispatcher -l pl.UTF-8
+Ten pakiet udostępnia usługę przekształcania tekstu na mowę przy
+użyciu systemu Speech Dispatcher.
 
 %package devel
 Summary:	Development files for gnome_speech
