@@ -15,7 +15,7 @@ Version:	0.4.16
 Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-speech/0.4/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-speech/0.4/%{name}-%{version}.tar.bz2
 # Source0-md5:	83f23b400c39c67567e3b4c4e88dbec4
 Patch0:		%{name}-jar_dir.patch
 URL:		http://developer.gnome.org/projects/gap/
@@ -118,7 +118,8 @@ Statyczna biblioteka gnome-speech.
 %package java
 Summary:	Java classes for gnome-speech
 Summary(pl.UTF-8):	Klasy Java dla gnome-speech
-Group:		Development/Libraries
+Group:		Development/Languages/Java
+Requires:	jpackage-utils
 
 %description java
 Java classes for gnome-speech.
