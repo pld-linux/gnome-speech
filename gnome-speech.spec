@@ -11,12 +11,12 @@
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl.UTF-8):	GNOME Speech - przekształcanie tekstu na mowę
 Name:		gnome-speech
-Version:	0.4.16
+Version:	0.4.17
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-speech/0.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	83f23b400c39c67567e3b4c4e88dbec4
+# Source0-md5:	a202dbc9df89e1c91e66cbf0fd21f26b
 Patch0:		%{name}-jar_dir.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel >= 1:2.14.7
@@ -165,6 +165,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/test-speech
 %attr(755,root,root) %{_libdir}/libgnomespeech.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnomespeech.so.?
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so*
 
 %files driver-espeak
