@@ -1,0 +1,11 @@
+--- gnome-speech-0.4.17/drivers/espeak/espeaksynthesisdriver.c.orig	2008-02-15 17:06:29.000000000 +0000
++++ gnome-speech-0.4.17/drivers/espeak/espeaksynthesisdriver.c	2008-02-15 17:07:16.000000000 +0000
+@@ -168,7 +168,7 @@
+ 
+     espeak_SetSynthCallback( espeak_synthesis_driver_index_callback);
+ 
+-#if ESPEAK_API_REVISION==2
++#if ESPEAK_API_REVISION==2 || ESPEAK_API_REVISION==3
+     espeak_Initialize(AUDIO_OUTPUT_PLAYBACK, 200, NULL, 0);
+ #else
+     espeak_Initialize(AUDIO_OUTPUT_PLAYBACK, 200, NULL);
