@@ -18,6 +18,7 @@ Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-speech/0.4/%{name}-%{version}.tar.bz2
 # Source0-md5:	a202dbc9df89e1c91e66cbf0fd21f26b
 Patch0:		%{name}-jar_dir.patch
+Patch1:		%{name}-espeak_api.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	autoconf
@@ -130,6 +131,7 @@ Klasy Java dla gnome-speech.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
