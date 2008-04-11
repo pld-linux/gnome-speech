@@ -11,14 +11,13 @@
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl.UTF-8):	GNOME Speech - przekształcanie tekstu na mowę
 Name:		gnome-speech
-Version:	0.4.17
-Release:	2
+Version:	0.4.18
+Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-speech/0.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	a202dbc9df89e1c91e66cbf0fd21f26b
+# Source0-md5:	f325037fdc74e19d943f397066454ac3
 Patch0:		%{name}-jar_dir.patch
-Patch1:		%{name}-espeak_api.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	autoconf
@@ -131,7 +130,6 @@ Klasy Java dla gnome-speech.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
