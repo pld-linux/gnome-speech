@@ -11,12 +11,12 @@
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl.UTF-8):	GNOME Speech - przekształcanie tekstu na mowę
 Name:		gnome-speech
-Version:	0.4.18
+Version:	0.4.19
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-speech/0.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	f325037fdc74e19d943f397066454ac3
+# Source0-md5:	70816666e1359684eb3699c5dcaeafe6
 Patch0:		%{name}-jar_dir.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel >= 1:2.14.7
