@@ -12,7 +12,7 @@ Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl.UTF-8):	GNOME Speech - przekształcanie tekstu na mowę
 Name:		gnome-speech
 Version:	0.4.23
-Release:	5
+Release:	6
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-speech/0.4/%{name}-%{version}.tar.bz2
@@ -29,6 +29,7 @@ BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	java-access-bridge >= 1.18.0
 BuildRequires:	jdk
 %endif
+BuildRequires:	libbonobo >= 2.18.0
 BuildRequires:	libbonobo-devel >= 2.18.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
