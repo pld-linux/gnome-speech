@@ -1,0 +1,11 @@
+--- gnome-speech-0.4.25/drivers/speech-dispatcher/libspeechd.h.orig	2008-12-10 14:36:00.000000000 +0100
++++ gnome-speech-0.4.25/drivers/speech-dispatcher/libspeechd.h	2023-12-30 15:34:43.663374178 +0100
+@@ -77,7 +77,7 @@ typedef enum
+ 
+ 
+ /* Debugging */
+-FILE* spd_debug;
++extern FILE* spd_debug;
+ void SPD_DBG(char *format, ...);
+ 
+ /* Unless there is an fatal error, it doesn't print anything */

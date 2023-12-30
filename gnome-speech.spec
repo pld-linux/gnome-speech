@@ -1,24 +1,26 @@
 # TODO:
-# - build other speech plugins?
+# - build other speech plugins? (freetts, proprietary: viavoice, loquendo, dectalk, swift, theta, eloquence)
 #
 # Conditional build:
-%bcond_without	festival	# don't build Festival plugin
-%bcond_without	java		# don't build java subpackage
-#
-%ifnarch i586 i686 pentium3 pentium4 athlon %{x8664}
-%undefine	with_java
-%endif
+%bcond_without	festival	# Festival plugin
+%bcond_without	java		# java subpackage
+%bcond_without	static_libs	# static library
+
+# requires Java >= 1.4 < 10 (idlj removed in Java 11, javah in Java 10)
+%define		use_jdk		openjdk8
+
 Summary:	GNOME Speech - text-to-speech convertion
 Summary(pl.UTF-8):	GNOME Speech - przekształcanie tekstu na mowę
 Name:		gnome-speech
-Version:	0.4.23
-Release:	7
-License:	LGPL
+Version:	0.4.25
+Release:	1
+License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-speech/0.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	54041cf87f7de56dd081848e86a08d4c
+Source0:	https://download.gnome.org/sources/gnome-speech/0.4/%{name}-%{version}.tar.bz2
+# Source0-md5:	89cbc23fc131c33396c0346085759f63
 Patch0:		%{name}-jar_dir.patch
-URL:		http://developer.gnome.org/projects/gap/
+Patch1:		%{name}-common.patch
+URL:		https://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -27,15 +29,16 @@ BuildRequires:	gnome-common >= 2.18.0
 BuildRequires:	gtk-doc >= 1.8
 %if %{with java}
 BuildRequires:	java-access-bridge >= 1.18.0
-BuildRequires:	jdk
+%buildrequires_jdk
 %endif
 BuildRequires:	libbonobo >= 2.18.0
 BuildRequires:	libbonobo-devel >= 2.18.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 2.021
 Requires:	gnome-speech-driver
 Provides:	gnome_speech
-Obsoletes:	gnome_speech
+Obsoletes:	gnome_speech < 0.2.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -96,7 +99,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libbonobo-devel >= 2.18.0
 Provides:	gnome_speech-devel
-Obsoletes:	gnome_speech-devel
+Obsoletes:	gnome_speech-devel < 0.2.2
 
 %description devel
 GNOME Speech files needed for development.
@@ -131,6 +134,7 @@ Klasy Java dla gnome-speech.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -139,11 +143,13 @@ Klasy Java dla gnome-speech.
 %{__automake}
 %{__autoconf}
 %configure \
-	--enable-static \
 	--enable-gtk-doc \
-	--with%{!?with_festival:out}-festival \
-	--with-speech-dispatcher \
-	%{?with_java:--with-jab-dir=%{_javadir}}
+	%{?with_static_libs:--enable-static} \
+	--with-festival%{!?with_festival:=no} \
+	%{?with_java:--with-jab-dir=%{_javadir}} \
+	--with-java-home=%{java_home} \
+	--with-speech-dispatcher
+
 %{__make} \
 	espeak_LIBDIR=%{_libdir}
 
@@ -155,7 +161,12 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 # no *.la for orbit modules
-rm -f $RPM_BUILD_ROOT%{_libdir}/orbit-2.0/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/orbit-2.0/*.la
+%if %{with static_libs}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/orbit-2.0/*.a
+%endif
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgnomespeech.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -167,8 +178,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/test-speech
 %attr(755,root,root) %{_libdir}/libgnomespeech.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnomespeech.so.?
-%attr(755,root,root) %{_libdir}/orbit-2.0/*.so*
+%attr(755,root,root) %ghost %{_libdir}/libgnomespeech.so.7
+%attr(755,root,root) %{_libdir}/orbit-2.0/GNOME_Speech_module.so
 
 %files driver-espeak
 %defattr(644,root,root,755)
@@ -190,10 +201,9 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnomespeech.so
-%{_libdir}/libgnomespeech.la
 %{_includedir}/gnome-speech-1.0
 %{_datadir}/idl/gnome-speech-1.0
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/gnome-speech-1.0.pc
 
 %files static
 %defattr(644,root,root,755)
